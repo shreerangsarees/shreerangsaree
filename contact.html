@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shreerang Saree</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f0f8ff;
+    }
+
+    .contact_page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    /* Navbar Styles */
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: linear-gradient(135deg, #160e0b, #160e0b); /* Dark Brown */
+        color: white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    /* Contact Form Section Styles */
+    .contact_form_section {
+        background-color: white;
+        padding: 30px;
+        margin-bottom: 50px;
+    }
+
+    .contact_form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contact_form .form_group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact_form .form_group label {
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #160e0b; /* Dark Brown */
+    }
+
+    .contact_form .form_group input,
+    .contact_form .form_group textarea {
+        padding: 16px;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        outline: none;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .contact_form .form_group input:focus,
+    .contact_form .form_group textarea:focus {
+        border-color: #160e0b; /* Dark Brown */
+        background-color: #fff;
+    }
+
+    .contact_form .form_group textarea {
+        resize: none;
+    }
+
+    .contact_form .submit_btn {
+        padding: 16px;
+        font-size: 1.1rem;
+        color: white;
+        background-color: #160e0b; /* Dark Brown */
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact_form .submit_btn:hover {
+        background-color: #5c3a3a; /* Lighter brown */
+        transform: translateY(-5px);
+    }
+
+    .map_section {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .map_section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        color: #160e0b; /* Dark Brown */
+    }
+
+    .map_container iframe {
+        width: 100%;
+        height: 450px;
+        border: 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .map_container iframe:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2rem;
+        }
+
+        header p {
+            font-size: 1rem;
+        }
+
+        .contact_form .submit_btn {
+            font-size: 1rem;
+        }
+
+        .map_section h2 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact_form_section {
+            padding: 20px;
+        }
+
+        .contact_form .form_group input,
+        .contact_form .form_group textarea {
+            font-size: 0.9rem;
+        }
+
+        .contact_form .submit_btn {
+            font-size: 1rem;
+        }
+
+        .map_section h2 {
+            font-size: 1.8rem;
+        }
+
+        .map_container iframe {
+            box-shadow: 10px 10px 10px;
+        }
+    }
+
+    /* Menu Styles */
+    .menu-icon {
+        color: white;
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .close-icon {
+        color: white;
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .fullscreen-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        text-align: center;
+        z-index: 998;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .fullscreen-menu a {
+        color: white;
+        font-size: 2rem;
+        margin: 20px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .fullscreen-menu a:hover {
+        color: #160e0b;
+    }
+
+    .fullscreen-menu.active {
+        display: flex;
+    }
+
+    footer {
+        background-color: #160e0b; /* Dark Brown */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .footer-content p {
+        margin: 5px 0;
+        font-size: 1.1rem;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+
+    .social-icons a {
+        margin: 0 15px;
+        color: white;
+        font-size: 1.8rem;
+        text-decoration: none;
+    }
+
+    .social-icons a:hover {
+        color: #5c3a3a; /* Lighter brown */
+    }
+
+    .developer {
+        margin-top: 15px;
+        font-size: -20px; /* Smaller size */
+        font-style: italic;
+    }
+
+    .developer-link {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .developer-link:hover {
+        color: #5c3a3a; /* Lighter brown */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you!</p>
+  </header>
+
+  <!-- Menu Icon -->
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <!-- Close Icon -->
+  <div class="close-icon" onclick="closeMenu()">✖</div>
+
+  <!-- Fullscreen Menu -->
+  <div class="fullscreen-menu" id="fullscreenMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="contact_page">
+        <section class="contact_form_section">
+            <form
+              class="contact_form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              onsubmit="return validateForm();"
+            >
+              <!-- Web3 Form Identifier -->
+              <input type="hidden" name="access_key" value="e5a856bb-3252-4c8a-a59a-c67c4986c4f9">
+              
+              <!-- Name Field -->
+              <div class="form_group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+              </div>
+              
+              <!-- Email Field -->
+              <div class="form_group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+              </div>
+              
+              <!-- Mobile Number Field -->
+              <div class="form_group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" maxlength="10" required>
+              </div>
+              
+              <!-- Submit Button -->
+              <button type="submit" class="submit_btn">Submit</button>
+            </form>
+          </section>
+    <section class="map_section">
+      <h2>Visit Us</h2>
+      <div class="map_container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.3981307021105!2d72.8405565!3d19.0089988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cfc360d42519%3A0x1c4f43f9845a5baf!2sShreerang%20Saree!5e0!3m2!1sen!2sin!4v1699970398153!5m2!1sen!2sin"></iframe>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p class="developer">
+        Connect With us on
+    </p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/shreerang.saree/" target="_blank" class="instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="tel:+919137554336">
+                <i class="fas fa-phone"></i>
+              </a>
+            <a href="https://www.facebook.com/profile.php?id=61563089096094" target="_blank" class="linkedin">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
+        <p>&copy; 2024 Shreerang Saree. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("fullscreenMenu").classList.add("active");
+      document.querySelector(".menu-icon").style.display = "none";
+      document.querySelector(".close-icon").style.display = "block";
+    }
+
+    function closeMenu() {
+      document.getElementById("fullscreenMenu").classList.remove("active");
+      document.querySelector(".menu-icon").style.display = "block";
+      document.querySelector(".close-icon").style.display = "none";
+    }
+
+    function validateForm() {
+        const email = document.getElementById("email").value;
+        const mobile = document.getElementById("mobile").value;
+        
+        // Email validation
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+        
+        // Mobile validation (basic check for 10 digits)
+        const mobilePattern = /^[0-9]{10}$/;
+        if (!mobilePattern.test(mobile)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return false;
+        }
+    }
+  </script>
+</body>
+</html>
